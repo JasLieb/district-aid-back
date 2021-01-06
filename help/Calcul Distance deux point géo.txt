@@ -1,0 +1,47 @@
+soit deux points
+
+A de latitude phiA et longitude lambdaA
+B de latitude phiB et longitude lambdaB
+
+d(lambda) = lambdaB - lambdaA
+
+Distance angulaire S(a-b)
+S(a-b) = arc.cos(sin(phiA).sin(phiB) + cos(phiA).cos(phiB).cos(delta(lambda)))
+
+Distance en metres D
+D = S(a-b) . 6 378 137
+
+---------------------------------------
+
+Filtre : point à moins de 1 Km / 1000 m
+A : point de référence lat : 45, lng : 75
+B : point à inclure ? lat : X, lng : Y
+
+1000 = S(a-b) . 6 378 137
+<=> 1000 / 6 378 137 = S(a-b)
+<=> 0,000 156 = arc.cos(sin(phiA).sin(phiB) + cos(phiA).cos(phiB).cos(delta(lambda)))
+
+avec delta(lambda) = Y - 75
+donc on a :
+
+0,000 156 = arc.cos(sin(45).sin(X) + cos(45).cos(X).cos(Y - 75))
+
+--------------------------------------------------
+
+Filtre : point à moins de 1 Km / 1000 m
+A : point de référence lat : 45, lng : 75
+B : point à inclure ? lat : 45.5, lng : 70
+
+1000 > S(a-b) . 6 378 137
+<=> 1000 / 6 378 137 > S(a-b)
+<=> 0,000 156 > arc.cos(sin(phiA).sin(phiB) + cos(phiA).cos(phiB).cos(delta(lambda)))
+
+avec delta(lambda) = 70 - 75 = -5
+donc on a :
+
+0,000 156 > arccos(sin(45).sin(45.5) + cos(45).cos(45.5).cos(-5))
+<=> 0.000 156 > arccos(0,71 + 0.7 * 0.99)
+<=> 0.000 156 > arccos(0,71 + 0.69)
+<=> 0.000 156 > arccos(1.4)
+
+--------------------------------------------------
