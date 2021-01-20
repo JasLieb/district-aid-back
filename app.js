@@ -2,8 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('./middlewares/logger');
-var db = require('./factories/mongoFactory');
-db.openConnection();
+var config = require('./config');
 
 var indexRouter = require('./routes/indexRoute');
 var usersRouter = require('./routes/usersRoute');

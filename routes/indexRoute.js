@@ -7,6 +7,10 @@ router.get('/', function (req, res, next) {
   res.redirect('/web/');
 });
 
+router.get('/web', function (req, res, next) {
+  res.end();
+});
+
 router.get('/downloads', function (req, res, next) {
   var apkFile = `./downloads/nowaste.apk`;
   if(!fs.existsSync(apkFile))
