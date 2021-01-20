@@ -39,7 +39,7 @@ const deletePoint = (data) => {
 
 const cleanDummyPoint = (data) =>
     new Promise((resolve, error) => {
-        InterestPoint.deleteOne({
+        InterestPoint.deleteMany({
             name: data.name
         })
         .then(res => { resolve(); })

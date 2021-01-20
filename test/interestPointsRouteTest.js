@@ -9,7 +9,7 @@ const dummyPoint = {
             lng: 1
         }, 
         { Point: ['lng', 'lat'] }
-    ),
+    ).geometry,
     name: 'a testing point',
     type: 'Giver'
 };
@@ -50,7 +50,6 @@ describe('/points tests', () => {
         });
 
         it('should return Interest Point created with an id', async () => {
-            console.log(response.body);
             assert.ok(response.body.properties.name.length > 0);
             assert.ok(response.body.properties.type === 'Giver');
             assert.ok(response.body.localization);
