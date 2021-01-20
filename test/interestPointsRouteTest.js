@@ -53,7 +53,7 @@ describe('/points tests', () => {
             console.log(response.body);
             assert.ok(response.body.properties.name.length > 0);
             assert.ok(response.body.properties.type === 'Giver');
-            assert.ok(response.body.geometry);
+            assert.ok(response.body.localization);
             assert.ok(response.body._id);
         });
 
