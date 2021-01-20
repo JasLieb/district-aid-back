@@ -2,6 +2,8 @@ var app = require('../../app');
 var request = require('supertest');
 var agent = request.agent(app);
 var db = require('../../factories/databaseMariaFactory');
+var InterestPoint = require('../../models/interestPointsModel');
+var User = require('../../models/userModel');
 
 const getPoints = () => {
     return new Promise((resolve, error) => {
@@ -37,10 +39,12 @@ const deletePoint = (data) => {
 
 const cleanDummyPoint = (data) =>
     new Promise((resolve, error) => {
-        db.query(`delete from interest_points where name='${data.name}'`) 
+        InterestPoint.deleteOne({
+            name: data.name
+        })
         .then(res => { resolve(); })
         .catch(err => { error(err); });
-    })
+    });
 
 const getPointsNear = (position) => {
     return new Promise((resolve, error) => {
@@ -100,7 +104,9 @@ const loginDummyWithDataAndToken = (token, data) => {
 
 const cleanDummyUser = (data) =>
     new Promise((resolve, error) => {
-        db.query(`delete from users where name='${data.name}' and email='${data.email}'`) 
+        User.deleteOne({
+            name: data.name
+        })
         .then(res => { resolve(); })
         .catch(err => { error(err); });
     });

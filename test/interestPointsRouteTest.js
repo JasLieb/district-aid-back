@@ -1,11 +1,15 @@
 var assert = require('assert');
 var apiCall = require('./utils/apiCalls');
+var GeoJSON = require('geojson');
 
 const dummyPoint = {
-    localization: {
-        lat: 1,
-        lng: 1
-    },
+    localization: GeoJSON.parse(
+        {
+            lat: 1,
+            lng: 1
+        }, 
+        { Point: ['lng', 'lat'] }
+    ),
     name: 'a testing point',
     type: 'Giver'
 };
@@ -46,10 +50,11 @@ describe('/points tests', () => {
         });
 
         it('should return Interest Point created with an id', async () => {
-            assert.ok(response.body.name.length > 0);
-            assert.ok(response.body.type === 'Giver');
-            assert.ok(response.body.location);
-            assert.ok(response.body.id);
+            console.log(response.body);
+            assert.ok(response.body.properties.name.length > 0);
+            assert.ok(response.body.properties.type === 'Giver');
+            assert.ok(response.body.geometry);
+            assert.ok(response.body._id);
         });
 
         after((done) => {

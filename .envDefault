@@ -14,3 +14,4 @@ DB_NAME=
 DB_HOST=
 # 3306 by default
 DB_PORT=
+MONGO_KEY=

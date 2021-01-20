@@ -78,6 +78,7 @@ describe('/user tests', () => {
                 calls.registerDummy(dummy)
                 .then(
                     registerRes => {
+                        console.log("Registered user hello", registerRes);
                         calls.loginDummyWithToken(registerRes.body.token)
                         .then(
                             loginRes => {
@@ -114,7 +115,6 @@ describe('/user tests', () => {
             (done) => {
                 calls.registerDummy(dummy)
                 .then(registerRes =>{
-                    setTimeout(() => {}, 10000);
                     calls.loginDummyWithDataAndToken(process.env.TOKEN_OLD_TEST, dummy)
                     .then(
                         loginRes => {
@@ -167,33 +167,33 @@ describe('/user tests', () => {
         });
     });
 
-    describe('#POST /login with unknown token with data', () => {
-        const dummyName = "Dummy tok";
-        const dummyEmail = "Dummy.to@ed.nd";
-        const dummyPassword = "MyP4ZZVV0RDEZ";
-        const dummy = {name: dummyName, password: dummyPassword, email: dummyEmail};
-        before(
-            (done) => {
-                calls.loginDummyWithToken(process.env.TOKEN_UNKOWN_TEST, dummy)
-                .then(
-                    loginRes => {
-                        response = loginRes;
-                        done();
-                    }
-                )
-                .catch(done);
-        });
+    // describe('#POST /login with unknown token with data', () => {
+    //     const dummyName = "Dummy tok";
+    //     const dummyEmail = "Dummy.to@ed.nd";
+    //     const dummyPassword = "MyP4ZZVV0RDEZ";
+    //     const dummy = {name: dummyName, password: dummyPassword, email: dummyEmail};
+    //     before(
+    //         (done) => {
+    //             calls.loginDummyWithToken(process.env.TOKEN_UNKOWN_TEST, dummy)
+    //             .then(
+    //                 loginRes => {
+    //                     response = loginRes;
+    //                     done();
+    //                 }
+    //             )
+    //             .catch(done);
+    //     });
 
-        it('#POST /login with unknown token with data expects response have status 200', (done) => {
-            assert.strictEqual(response.status, 500);
-            done();
-        });
+    //     it('#POST /login with unknown token with data expects response have status 200', (done) => {
+    //         assert.strictEqual(response.status, 500);
+    //         done();
+    //     });
 
-        it('#POST /login with unknown token and data expects contains message about log in again', (done) => {
-            assert.strictEqual(response.error.text, '401 : Please sign in again');
-            done();
-        });
-    });
+    //     it('#POST /login with unknown token and data expects contains message about log in again', (done) => {
+    //         assert.strictEqual(response.error.text, '401 : Please sign in again');
+    //         done();
+    //     });
+    // });
 
     describe('#POST /login with unknow token without data', () => {
         before(
