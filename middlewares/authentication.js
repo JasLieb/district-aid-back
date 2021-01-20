@@ -1,8 +1,8 @@
-const db = require('../factories/databaseMariaFactory');
+// const db = require('../factories/databaseMariaFactory');
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { deleteOne } = require('../models/userModel');
+// const { deleteOne } = require('../models/userModel');
 
 const getNewToken = (id) => 'Bearer ' + jwt.sign({ _id: id }, process.env.JWTSECRETKEY, { expiresIn: "1 days" });
 

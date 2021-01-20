@@ -1,4 +1,4 @@
-const db = require('./databaseMariaFactory');
+// const db = require('./databaseMariaFactory');
 const InterestPoint = require('../models/interestPointsModel');
 // InterestPoint.newPoint(localisation.name, {lng: 1, lat:1}, "Giver");
 var GeoJSON = require('geojson');
@@ -56,8 +56,9 @@ const deleteInterestPoint = async (data) => {
 
 const getInterestPointsFollowPosition = async (localization, maxDistance) => {
     try {
-        const query = `SELECT * FROM interest_points WHERE ST_DISTANCE(POINT(${localization.lng}, ${localization.lat}), location) < ${maxDistance}`;
-        return await db.query(query);
+        // const query = `SELECT * FROM interest_points WHERE ST_DISTANCE(POINT(${localization.lng}, ${localization.lat}), location) < ${maxDistance}`;
+        // return await db.query(query);
+        return undefined;
     } catch (err) {
         throw err;
     }

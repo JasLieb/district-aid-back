@@ -1,7 +1,7 @@
 var app = require('../../app');
 var request = require('supertest');
 var agent = request.agent(app);
-var db = require('../../factories/databaseMariaFactory');
+// var db = require('../../factories/databaseMariaFactory');
 var InterestPoint = require('../../models/interestPointsModel');
 var User = require('../../models/userModel');
 

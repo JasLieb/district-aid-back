@@ -1,4 +1,4 @@
-const db = require('./databaseMariaFactory');
+// const db = require('./databaseMariaFactory');
 // const UserModel = require('../models/userModel');
 const User = require('../models/userModel');
 const authentication = require('../middlewares/authentication');
