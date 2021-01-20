@@ -19,7 +19,7 @@ const createInterestPoint = async (data) => {
         console.log(geoPoint);
         const point = new InterestPoint({
             type: data.type,
-            geometry: geoPoint,
+            geometry: geoPoint.geometry,
             properties: {
                 name: data.name,
                 creationDate: new Date(),

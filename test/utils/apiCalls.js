@@ -45,10 +45,10 @@ const cleanDummyPoint = (data) =>
         .catch(err => { error(err); });
     });
 
-const getPointsNear = (position) => {
+const getPointsNear = (position, maxDistance) => {
     return new Promise((resolve, error) => {
         agent.get('/api/points/nearMe')
-        .send({position})
+        .send({localization: position, maxDistance})
         .end((err, res) => {
             if(err) error(err);
             else resolve(res);

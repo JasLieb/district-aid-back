@@ -2,12 +2,6 @@ const express = require('express');
 const router = express.Router();
 var usersFactory = require('../factories/usersFactory');
 
-/**
- * @swagger
- * /users/register:
- *    post:
- *      description: This should create an user and return a token
- */
 router.post('/register', async function (req, res, next) {
   try {
     var token = await usersFactory.createNewUser(req.body);
@@ -17,12 +11,6 @@ router.post('/register', async function (req, res, next) {
   }
 });
 
-/**
- * @swagger
- * /users/login:
- *    post:
- *      description: This should login an user and return a token
- */
 router.post('/login', async function (req, res, next) {
   try {
     var user = req.body;
