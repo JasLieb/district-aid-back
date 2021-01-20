@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var InterestPointFactory = require('../factories/interestPointsFactory');
+var GeoJSON = require('geojson');
 
 router.get('/', async function (req, res, next) {
     try {
@@ -31,11 +32,10 @@ router.delete('/', async function (req, res, next) {
 
 router.get('/nearMe', async function (req, res, next) {
     try {
-        var position = {lng: 1, lat: 1}; // Will be given by front or req object
         var distanceMax = 1000; // in meters, will be given by front or req object
-
-        var InterestPoints = await InterestPointFactory.getInterestPointsFollowPosition(position, distanceMax);
-        res.status(200).json(InterestPoints).end();
+        var geoPoint = GeoJSON.parse({lng: 1, lat: 1}, { Point: ['lng', 'lat'] }); // Will be given by front or req object
+        var InterestPoints = await InterestPointFactory.getInterestPointsFollowPosition(geoPoint.geometry, distanceMax);
+        res.status(200).json(InterestPoints ?? []).end();
     } catch (err) {
         next(err);
     }

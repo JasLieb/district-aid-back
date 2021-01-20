@@ -54,11 +54,16 @@ const deleteInterestPoint = async (data) => {
     }
 }
 
-const getInterestPointsFollowPosition = async (localization, maxDistance) => {
+const getInterestPointsFollowPosition = async (geoPoint, maxDistance) => {
     try {
-        // const query = `SELECT * FROM interest_points WHERE ST_DISTANCE(POINT(${localization.lng}, ${localization.lat}), location) < ${maxDistance}`;
-        // return await db.query(query);
-        return undefined;
+        return await InterestPoint.findOne({
+            "localization": {
+                $near: {
+                    $geometry: geoPoint,
+                    $maxDistance: `${maxDistance}`
+                },
+            }
+        });
     } catch (err) {
         throw err;
     }

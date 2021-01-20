@@ -3,10 +3,17 @@ var Schema = mongoose.Schema;
 
 var schema = {
     type: String,
-    geometry: {
-        type: {type: String},
-        coordinates: [Number]
-    },
+    localization: {
+        type: {
+          type: String,
+          enum: ['Point'],
+          default: 'Point',
+        },
+        coordinates: {
+          type: [Number],
+          default: [0, 0],
+        }
+      },
     properties: {
         name: String,
         creationDate: Date,
@@ -16,5 +23,6 @@ var schema = {
 };
 
 var interestPointModel = new Schema(schema);
+interestPointModel.index({ localization: "2dsphere"});
 
 module.exports = mongoose.model('InterestPoint', interestPointModel, 'InterestPoints');
