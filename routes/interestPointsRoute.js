@@ -32,9 +32,11 @@ router.delete('/', async function (req, res, next) {
 
 router.get('/nearMe', async function (req, res, next) {
     try {
-        var distanceMax = req.body.maxDistance;
-        console.log(req.body);
-        var geoPoint = GeoJSON.parse(req.body.localization, { Point: ['lng', 'lat'] });
+        var distanceMax = req.query.maxDistance;
+        var lat = req.query.lat;
+        var lng = req.query.lng;
+        console.log({lat, lng});
+        var geoPoint = GeoJSON.parse({lat, lng}, { Point: ['lng', 'lat'] });
         var InterestPoints = await InterestPointFactory.getInterestPointsFollowPosition(geoPoint.geometry, distanceMax);
         res.status(200).json(InterestPoints ?? []).end();
     } catch (err) {

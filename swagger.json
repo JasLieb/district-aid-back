@@ -109,7 +109,7 @@
                 }
             }
         },
-        "/api/point/nearMe": {
+        "/api/points/nearMe": {
             "get":{
                 "tags": [
                     "InterestPoint"
@@ -117,18 +117,27 @@
                 "description": "Get all InterestPoints around a position and a distance",
                 "parameters": [
                     {
-                        "name": "_body",
-                        "in": "body",
-                        "description": "The position and the distance",
+                        "name": "lat",
+                        "in": "query",
+                        "description": "The latitude position",
                         "schema": {
-                            "properties": {
-                                "localization": {
-                                    "$ref": "#/definitions/LatLng"
-                                },
-                                "maxDistance":{
-                                    "type": "number"
-                                }
-                            }
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "description": "The longitude position",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "maxDistance",
+                        "in": "query",
+                        "description": "The maximum distance from the user location in meters",
+                        "schema": {
+                            "type": "number"
                         }
                     }
                 ],
