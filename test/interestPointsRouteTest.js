@@ -89,7 +89,7 @@ describe('/points tests', () => {
     describe('#GET /nearMe', () => {
         before(done => {
             apiCall.getPointsNear(
-                {lat: 1, lng:1},
+                {lat: 43.5610932, lng:1.4531450000000001},
                 5000
             )
             .then(res => {

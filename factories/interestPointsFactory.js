@@ -47,7 +47,7 @@ const deleteInterestPoint = async (data) => {
 
 const getInterestPointsFollowPosition = async (geoPoint, maxDistance) => {
     try {
-        return await InterestPoint.findOne({
+        return await InterestPoint.find({
             "localization": {
                 $near: {
                     $geometry: geoPoint,
